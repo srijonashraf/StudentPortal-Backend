@@ -1,0 +1,2 @@
+MongoDB if once connected by verifying user pass it will not check the DB name, if DB name doesn't match/exist it will generate a new DB and Collection.
+Once it connected it will not affect if modifying anything in .env when nodemon is running. You have to stop nodemon and run again to see the changes in .env because .env just accelerate once for the first time.
