@@ -38,7 +38,7 @@ exports.stuInfoById = async (req, res) => {
     // Use req.params to get the parameters from the URL
     let id = req.params.id;
 
-    // Assuming you want to find a single student by ID, you can use findOne instead of find
+    // Find a single student by ID.
     let result = await StudentInfoModel.findOne({ id: id });
 
     if (result) {
