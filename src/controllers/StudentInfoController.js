@@ -64,3 +64,31 @@ exports.stuInfoById = async (req, res) => {
     });
   }
 };
+
+exports.editStuInfo = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let result = await StudentInfoModel.findOne({ id: id }).count(); //This is an extra query, it can be removed.
+    if (result === 1) {
+      let reqBody = req.body;
+      let data = await StudentInfoModel.updateOne({ id: id }, reqBody); //This query is enough for this function, No need to check the entity from db by findOne at first.
+      res
+        .status(200)
+        .json({
+          status: "success",
+          message: "Data Updated Successfully",
+          data: data,
+        });
+    } else {
+      res.status(500).json({ status: "error", message: "No Student Found" });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({
+        status: "error",
+        message: "Server Error to fetch Info",
+        data: err,
+      });
+  }
+};
